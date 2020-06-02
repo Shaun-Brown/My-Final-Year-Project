@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MyFinalYearProject</string>
+    <string name="game_finder">Game Finder</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="sign_in">Sign In</string>
+    <string name="game">Game</string>
+    <string name="description">Description</string>
+    <string name="create_game">Create Game</string>
+    <string name="view_game">View Game</string>
+    <string name="create_account">Create Account</string>
+    <string name="minimum_password">Minimum Password</string>
+    <string name="auth_failed">Auth Failed</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="magic_text">Magic! The Gathering</string>
+    <string name="game_img">gameImg</string>
+    <string name="game_name">Game Name</string>
+    <string name="game_desc">Game Desc</string>
+    <string name="email">Email/Username</string>
+    <string name="game_list">Game List</string>
+    <string name="user_message">Message</string>
+    <string name="gameImage">Game Image</string>
+    <string name="gameImageURL">Game Image URL</string>
+    <string name="create_post">Create Post</string>
+    <string name="post">Post Name</string>
+    <string name="dota_2_text">Dota 2</string>
+    <string name="codmw_text">Call of Duty: Modern Warfare</string>
+    <string name="destiny_2_text">Destiny 2</string>
+    <string name="hearthstone_text">Hearthstone</string>
+    <string name="league_text">League of Legends</string>
+    <string name="minecraft_text">Minecraft</string>
+    <string name="overwatch_text">Overwatch</string>
+    <string name="warcraft_text">World of Warcraft</string>
+    <string name="name">Name</string>
+</resources>

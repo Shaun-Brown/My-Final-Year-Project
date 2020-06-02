@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myfinalyearproject">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".MainActivity"
+            android:label="MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".OtherGameList"
+            android:label="OtherGameList" />
+        <activity
+            android:name=".CreateAccount"
+            android:label="CreateAccount" />
+        <activity
+            android:name=".CreateGame"
+            android:label="Create Game" />
+        <activity
+            android:name=".LoginPage"
+            android:label="LoginPage" />
+        <activity
+            android:name=".CoDMWPage"
+            android:label="ModernWarfarePage" />
+        <activity
+            android:name=".Destiny2Page"
+            android:label="Destiny2Page" />
+        <activity
+            android:name=".Dota2Page"
+            android:label="Dota2" />
+        <activity
+            android:name=".HearthstonePage"
+            android:label="Hearthstone" />
+        <activity
+            android:name=".LeaguePage"
+            android:label="LeaguePage" />
+        <activity
+            android:name=".MinecraftPage"
+            android:label="Minecraft" />
+        <activity
+            android:name=".OverwatchPage"
+            android:label="OverwatchPage" />
+        <activity
+            android:name=".WarcraftPage"
+            android:label="WarcraftPage" />
+
+    </application>
+
+</manifest>
