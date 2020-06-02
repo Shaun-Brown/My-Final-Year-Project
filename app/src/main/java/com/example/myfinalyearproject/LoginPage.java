@@ -75,7 +75,7 @@ public class LoginPage extends AppCompatActivity {
                                     if (password.length() < 6) {
                                         password.setError(getString(R.string.minimum_password));
                                     } else {
-                                        Toast.makeText(LoginPage.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                        toastMessage(getString(R.string.auth_failed));
                                     }
                                 } else {
                                     Intent intent = new Intent(LoginPage.this, MainActivity.class);
