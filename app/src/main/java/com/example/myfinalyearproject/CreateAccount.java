@@ -55,12 +55,12 @@ public class CreateAccount extends AppCompatActivity {
                 final String uPhone = phone.getText().toString();
 
                 if (TextUtils.isEmpty(uEmail)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    toastMessage("Enter email address!");
                     return;
                 }
 
                 if (TextUtils.isEmpty(uPassword)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    toastMessage("Enter password!");
                     return;
                 }
                 auth.createUserWithEmailAndPassword(uEmail, uPassword)
@@ -75,7 +75,7 @@ public class CreateAccount extends AppCompatActivity {
                                         Toast.makeText(CreateAccount.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Toast.makeText(CreateAccount.this, "User Created.", Toast.LENGTH_SHORT).show();
+                                    toastMessage( "User Created.");
                                     userID = auth.getCurrentUser().getUid();
                                     DocumentReference docRef = db.collection("users").document(userID);
                                     Map<String, Object> user = new HashMap<>();

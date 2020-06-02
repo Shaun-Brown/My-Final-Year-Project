@@ -52,18 +52,18 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String user = userName.getText().toString();
-                final String upassword = password.getText().toString();
+                String uPassword = password.getText().toString();
 
                 if (TextUtils.isEmpty(user)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    toastMessage("Enter email address!");
                     return;
                 }
 
-                if (TextUtils.isEmpty(upassword)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(uPassword)) {
+                    toastMessage("Enter password!");
                     return;
                 }
-                auth.signInWithEmailAndPassword(user, upassword)
+                auth.signInWithEmailAndPassword(user, uPassword)
                         .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
