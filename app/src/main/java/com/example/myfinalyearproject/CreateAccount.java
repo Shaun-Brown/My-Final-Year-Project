@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +30,7 @@ public class CreateAccount extends AppCompatActivity {
     private static final String TAG = "CreateAccount";
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-    private EditText email, password, name, phone;
+    private EditText email, password, name, phone, image;
     private Button register;
     private String userID;
 
@@ -41,6 +43,7 @@ public class CreateAccount extends AppCompatActivity {
         password = findViewById(R.id.passwordEdit);
         name = findViewById(R.id.fullNameEdit);
         phone = findViewById(R.id.phoneEdit);
+        image = findViewById(R.id.imageEdit);
         register = findViewById(R.id.btnRegister);
 
         auth = FirebaseAuth.getInstance();
@@ -53,14 +56,17 @@ public class CreateAccount extends AppCompatActivity {
                 String uPassword = password.getText().toString().trim();
                 final String uName = name.getText().toString();
                 final String uPhone = phone.getText().toString();
+                final String uImage = image.getText().toString();
+                UserModel user = new UserModel();
+                user.setEmailAddress(uEmail);
+                user.setUserName(uName);
+                user.setPhoneNumber(uPhone);
+//                PostModel post = new PostModel();
+//                post.setUserName(uName);
+//                post.setUserImage(uImage);
 
-                if (TextUtils.isEmpty(uEmail)) {
-                    toastMessage("Enter email address!");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(uPassword)) {
-                    toastMessage("Enter password!");
+                if (TextUtils.isEmpty(uEmail)||TextUtils.isEmpty(uPassword)) {
+                    toastMessage("Enter email address and password");
                     return;
                 }
                 auth.createUserWithEmailAndPassword(uEmail, uPassword)
@@ -80,8 +86,9 @@ public class CreateAccount extends AppCompatActivity {
                                     DocumentReference docRef = db.collection("users").document(userID);
                                     Map<String, Object> user = new HashMap<>();
                                     user.put("email_address", uEmail);
-                                    user.put("full_name", uName);
+                                    user.put("user_name", uName);
                                     user.put("phone_number", uPhone);
+                                    user.put("image", uImage);
                                     docRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".GamePage"
+            android:label="GamePage" />
+        <activity
             android:name=".OtherGameList"
             android:label="OtherGameList" />
         <activity
@@ -34,31 +37,6 @@
         <activity
             android:name=".LoginPage"
             android:label="LoginPage" />
-        <activity
-            android:name=".CoDMWPage"
-            android:label="ModernWarfarePage" />
-        <activity
-            android:name=".Destiny2Page"
-            android:label="Destiny2Page" />
-        <activity
-            android:name=".Dota2Page"
-            android:label="Dota2" />
-        <activity
-            android:name=".HearthstonePage"
-            android:label="Hearthstone" />
-        <activity
-            android:name=".LeaguePage"
-            android:label="LeaguePage" />
-        <activity
-            android:name=".MinecraftPage"
-            android:label="Minecraft" />
-        <activity
-            android:name=".OverwatchPage"
-            android:label="OverwatchPage" />
-        <activity
-            android:name=".WarcraftPage"
-            android:label="WarcraftPage" />
-
     </application>
 
 </manifest>

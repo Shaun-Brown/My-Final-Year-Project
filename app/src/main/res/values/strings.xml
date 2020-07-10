@@ -34,4 +34,7 @@
     <string name="overwatch_text">Overwatch</string>
     <string name="warcraft_text">World of Warcraft</string>
     <string name="name">Name</string>
+    <string name="uImage">User Image</string>
+    <string name="postDescription">Post Description</string>
+    <string name="userName">Username</string>
 </resources>

@@ -39,8 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createAccountText"
-        app:layout_constraintVertical_bias="0.1
-" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <EditText
         android:id="@+id/emailEdit"
@@ -162,6 +161,41 @@
         app:layout_constraintVertical_bias="0.025"
         android:inputType="phone" />
 
+    <TextView
+        android:id="@+id/imageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/uImage"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneEdit"
+        app:layout_constraintVertical_bias="0.05"
+        tools:text="@string/uImage" />
+
+    <EditText
+        android:id="@+id/imageEdit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:autofillHints="userImage"
+        android:labelFor="@id/imageEdit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageText"
+        app:layout_constraintVertical_bias="0.025"
+        android:inputType="text" />
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="200dp"
@@ -171,7 +205,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEdit"
+        app:layout_constraintTop_toBottomOf="@+id/imageEdit"
         app:layout_constraintVertical_bias="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

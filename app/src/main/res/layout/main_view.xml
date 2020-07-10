@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:id="@+id/gameListViewParent">
+    android:id="@+id/gameListViewParent"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:gravity="center_vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
@@ -13,9 +16,10 @@
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
+        android:id="@+id/gameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/gameName"
+        android:lines="1"
         android:text="@string/game"
         android:layout_toEndOf="@id/gameImage"
         android:layout_marginStart="10dp"
@@ -27,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gameName"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_toEndOf="@id/gameImage"
         android:text="@string/description"
         android:textSize="12sp"/>

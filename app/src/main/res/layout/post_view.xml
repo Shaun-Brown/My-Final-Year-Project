@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/otherGameListViewParent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/gameListViewParent"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:gravity="center_vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/userImage"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="@string/userName"
+        android:layout_toEndOf="@id/userImage"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/postName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/post"
-        android:textSize="16sp" />
+        android:layout_below="@+id/userName"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@id/userImage"
+        android:text="@string/postDescription"
+        android:textSize="14sp"/>
 
 </RelativeLayout>
