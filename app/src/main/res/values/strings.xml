@@ -37,4 +37,15 @@
     <string name="uImage">User Image</string>
     <string name="postDescription">Post Description</string>
     <string name="userName">Username</string>
+    <string name="userEmail">Email...</string>
+    <string name="noAccount">Do not have an account?</string>
+    <string name="sendBtn">Send</string>
+    <string name="accountBtn">Account</string>
+    <string name="account">Account</string>
+    <string name="Account">accountItem</string>
+    <string name="postName">Post Name</string>
+    <string name="userPostName">User Post</string>
+    <string name="userPostDescription">User Post Description</string>
+    <string name="userPost">User Post</string>
+    <string name="user_name">Username</string>
 </resources>

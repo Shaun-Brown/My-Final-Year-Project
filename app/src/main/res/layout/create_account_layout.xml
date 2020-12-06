@@ -93,14 +93,14 @@
         app:layout_constraintVertical_bias="0.025" />
 
     <TextView
-        android:id="@+id/fullNameText"
+        android:id="@+id/userNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="@string/full_name"
+        android:text="@string/user_name"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,56 +110,21 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <EditText
-        android:id="@+id/fullNameEdit"
+        android:id="@+id/userNameEdit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:autofillHints="@string/name"
+        android:autofillHints="@string/userName"
         android:inputType="text"
-        android:labelFor="@id/fullNameEdit"
+        android:labelFor="@id/userNameEdit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameText"
+        app:layout_constraintTop_toBottomOf="@+id/userNameText"
         app:layout_constraintVertical_bias="0.025" />
-
-    <TextView
-        android:id="@+id/phoneText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="@string/phone_number"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameEdit"
-        app:layout_constraintVertical_bias="0.05"
-        tools:text="@string/phone_number" />
-
-    <EditText
-        android:id="@+id/phoneEdit"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:autofillHints="@string/phone_number"
-        android:labelFor="@id/phoneEdit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneText"
-        app:layout_constraintVertical_bias="0.025"
-        android:inputType="phone" />
 
     <TextView
         android:id="@+id/imageText"
@@ -175,7 +140,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEdit"
+        app:layout_constraintTop_toBottomOf="@+id/userNameEdit"
         app:layout_constraintVertical_bias="0.05"
         tools:text="@string/uImage" />
 

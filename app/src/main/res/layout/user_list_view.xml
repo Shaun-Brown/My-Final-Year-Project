@@ -10,8 +10,8 @@
     android:gravity="center_vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/userImage"
         android:src="@mipmap/ic_launcher"/>
 
@@ -23,17 +23,7 @@
         android:text="@string/userName"
         android:layout_toEndOf="@id/userImage"
         android:layout_marginStart="10dp"
+        android:layout_centerVertical="true"
         android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/postName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/userName"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="2dp"
-        android:layout_toEndOf="@id/userImage"
-        android:text="@string/postDescription"
-        android:textSize="14sp"/>
 
 </RelativeLayout>

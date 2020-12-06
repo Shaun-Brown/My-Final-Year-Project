@@ -51,10 +51,10 @@ public class LoginPage extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = userName.getText().toString();
+                String userN = userName.getText().toString();
                 String uPassword = password.getText().toString();
 
-                if (TextUtils.isEmpty(user)) {
+                if (TextUtils.isEmpty(userN)) {
                     toastMessage("Enter email address!");
                     return;
                 }
@@ -63,13 +63,10 @@ public class LoginPage extends AppCompatActivity {
                     toastMessage("Enter password!");
                     return;
                 }
-                auth.signInWithEmailAndPassword(user, uPassword)
+                auth.signInWithEmailAndPassword(userN, uPassword)
                         .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
                                     // there was an error
                                     if (password.length() < 6) {

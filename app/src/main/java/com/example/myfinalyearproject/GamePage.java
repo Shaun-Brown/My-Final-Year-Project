@@ -2,11 +2,12 @@ package com.example.myfinalyearproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,17 +16,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnFailureListener;
+import com.example.myfinalyearproject.Models.GameModel;
+import com.example.myfinalyearproject.Models.PostModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class GamePage extends AppCompatActivity implements PostListAdapter.OnPostListener {
 
@@ -34,96 +33,104 @@ public class GamePage extends AppCompatActivity implements PostListAdapter.OnPos
     private FirebaseFirestore fStore;
     private RecyclerView gameRView;
     private PostListAdapter plAdapter;
+//    private ArrayList<UserModel> users = new ArrayList<>();
     private ArrayList<PostModel> posts = new ArrayList<>();
-    private ArrayList<GameModel> games = new ArrayList<>();
-    private String userID, userName, userImage;
-    private String gameID;
-    private EditText editPost;
+    private GameModel games;
     private Button createPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_page_layout);
+        setContentView(R.layout.game_post_layout);
         final TextView gameName = findViewById(R.id.gameNameView);
-        editPost = findViewById(R.id.createPostEdit);
         createPost = findViewById(R.id.createPostBtn);
 
         Intent intent = getIntent();
-        final GameModel game = intent.getParcelableExtra("game");
+        games = intent.getParcelableExtra("game");
 
-        final String gName = game.getName();
-        gameID = game.getID();
-        gameName.setText(gName);
+        gameName.setText(games.getName());
 
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-//        createPost();
-
-        createPost.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick (View v){
-        final String post = editPost.getText().toString();
-        if (TextUtils.isEmpty(post)) {
-            toastMessage("Enter a post");
-            return;
-        }
-        userID = auth.getCurrentUser().getUid();
-        Map<String, Object> posts = new HashMap<>();
-        posts.put("post", post);
-        posts.put("user", userID);
-        posts.put("game", gameID);
-        posts.put("userName", userName);
-        posts.put("userImg", userImage);
-        fStore.collection("posts")
-                .add(posts)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        createPost.setOnClickListener(
+                new View.OnClickListener() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        finish();
-                        startActivity(getIntent());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
+                    public void onClick(View v) {
+                        Intent intent = new Intent(GamePage.this, CreatePost.class);
+                        intent.putExtra("game", games);
+                        startActivity(intent);
                     }
                 });
 
+        postList();
+
     }
-    });
 
-    postList();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.account_menu, menu);
+        MenuItem item = menu.findItem(R.id.accountIcon);
+        MenuItem item2 = menu.findItem(R.id.signInBtn);
+        if (auth.getCurrentUser() != null) {
+            item2.setVisible(false);
+        } else {
+            item.setVisible(false);
+        }
+        return true;
+    }
 
-}
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.accountBtn:
+                toastMessage("account selected");
+                Intent intent = new Intent(GamePage.this, UserAccountPage.class);
+                startActivity(intent);
+                return true;
+            case R.id.signOutBtn:
+                toastMessage("sign out selected");
+                auth.signOut();
+                finish();
+                return true;
+            case R.id.signInBtn:
+                toastMessage("sign in selected");
+                Intent intent2 = new Intent(GamePage.this, LoginPage.class);
+                startActivity(intent2);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
     private void postList() {
         fStore.collection("posts")
-                .whereEqualTo("game", gameID)
+                .whereEqualTo("game_ID", games.getID())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                PostModel post = document.toObject(PostModel.class);
-                                posts.add(post);
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        gameRView.scrollToPosition(posts.size() + 1);
-                        plAdapter.notifyItemInserted(posts.size() + 1);
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            PostModel post = document.toObject(PostModel.class);
+                            post.setPost_ID(document.getId());
+                            posts.add(post);
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            gameRView.scrollToPosition(posts.size() + 1);
+                            plAdapter.notifyItemInserted(posts.size() + 1);
+                            plAdapter.notifyDataSetChanged();
+                        }
                     }
                 });
-    postRecyclerView();
+        postRecyclerView();
     }
 
     private void postRecyclerView() {
         gameRView = findViewById(R.id.postListView);
         gameRView.setHasFixedSize(true);
         gameRView.setLayoutManager(new LinearLayoutManager(this));
-        plAdapter = new PostListAdapter(posts, GamePage.this, this);
+        plAdapter = new PostListAdapter(posts, this);
         gameRView.setAdapter(plAdapter);
     }
 

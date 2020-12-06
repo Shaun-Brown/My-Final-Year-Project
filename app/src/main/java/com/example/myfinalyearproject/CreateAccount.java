@@ -1,6 +1,5 @@
 package com.example.myfinalyearproject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +27,7 @@ public class CreateAccount extends AppCompatActivity {
     private static final String TAG = "CreateAccount";
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-    private EditText email, password, name, phone, image;
+    private EditText email, password, userName, image;
     private Button register;
     private String userID;
 
@@ -41,8 +38,7 @@ public class CreateAccount extends AppCompatActivity {
 
         email = findViewById(R.id.emailEdit);
         password = findViewById(R.id.passwordEdit);
-        name = findViewById(R.id.fullNameEdit);
-        phone = findViewById(R.id.phoneEdit);
+        userName = findViewById(R.id.userNameEdit);
         image = findViewById(R.id.imageEdit);
         register = findViewById(R.id.btnRegister);
 
@@ -52,59 +48,54 @@ public class CreateAccount extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String uEmail = email.getText().toString().trim();
-                String uPassword = password.getText().toString().trim();
-                final String uName = name.getText().toString();
-                final String uPhone = phone.getText().toString();
-                final String uImage = image.getText().toString();
-                UserModel user = new UserModel();
-                user.setEmailAddress(uEmail);
-                user.setUserName(uName);
-                user.setPhoneNumber(uPhone);
-//                PostModel post = new PostModel();
-//                post.setUserName(uName);
-//                post.setUserImage(uImage);
-
-                if (TextUtils.isEmpty(uEmail)||TextUtils.isEmpty(uPassword)) {
-                    toastMessage("Enter email address and password");
-                    return;
-                }
-                auth.createUserWithEmailAndPassword(uEmail, uPassword)
-                        .addOnCompleteListener(CreateAccount.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        password.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(CreateAccount.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    toastMessage( "User Created.");
-                                    userID = auth.getCurrentUser().getUid();
-                                    DocumentReference docRef = db.collection("users").document(userID);
-                                    Map<String, Object> user = new HashMap<>();
-                                    user.put("email_address", uEmail);
-                                    user.put("user_name", uName);
-                                    user.put("phone_number", uPhone);
-                                    user.put("image", uImage);
-                                    docRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.d(TAG, "on Success: user was created for: " + userID);
-                                        }
-                                    });
-                                    Intent intent = new Intent(CreateAccount.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                        });
-
+                createAccount();
             }
         });
     }
+
+    private void createAccount(){
+            final String uEmail = email.getText().toString().trim();
+            String uPassword = password.getText().toString().trim();
+            final String uName = userName.getText().toString();
+            final String uImage = image.getText().toString();
+            if (TextUtils.isEmpty(uEmail)||TextUtils.isEmpty(uPassword)) {
+                toastMessage("Enter email address and password");
+                return;
+            }
+            auth.createUserWithEmailAndPassword(uEmail, uPassword)
+                    .addOnCompleteListener(CreateAccount.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                // there was an error
+                                if (password.length() < 6) {
+                                    password.setError(getString(R.string.minimum_password));
+                                } else {
+                                    Toast.makeText(CreateAccount.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                }
+                            } else {
+                                toastMessage( "User Created.");
+                                userID = auth.getCurrentUser().getUid();
+                                DocumentReference docRef = db.collection("users").document(userID);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("user_ID", userID);
+                                user.put("user_email_address", uEmail);
+                                user.put("user_name", uName);
+                                user.put("user_image", uImage);
+                                docRef.set(user)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        finish();
+                                        Log.d(TAG, "on Success: user was created for: " + userID);
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+        };
+
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }

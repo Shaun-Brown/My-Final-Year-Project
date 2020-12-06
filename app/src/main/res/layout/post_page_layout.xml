@@ -17,4 +17,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.100" />
+
+    <TextView
+        android:id="@+id/descriptionView"
+        android:layout_width="261dp"
+        android:layout_height="148dp"
+        android:text="@string/postDescription"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.150"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/postView"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <EditText
+        android:id="@+id/userPostMessageEdit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="Enter message here..."
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+        app:layout_constraintVertical_bias="0.956"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/userPostBtn"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:text="@string/sendBtn"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/userPostMessageEdit"
+        app:layout_constraintTop_toBottomOf="@+id/userPosts"
+        app:layout_constraintVertical_bias="0.7"
+        tools:ignore="SmallSp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/userPostBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/descriptionView"
+        app:layout_constraintTop_toTopOf="@id/postView"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userPosts"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/userPostMessageEdit"
+        app:layout_constraintEnd_toStartOf="@+id/postUsers"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+        app:layout_constraintVertical_bias="0.538" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

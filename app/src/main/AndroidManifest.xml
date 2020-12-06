@@ -14,7 +14,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="MainActivity">
+            android:label="Game Finder">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GamePage"
-            android:label="GamePage" />
+            android:name=".GamePage" />
         <activity
             android:name=".OtherGameList"
             android:label="OtherGameList" />
@@ -35,8 +34,17 @@
             android:name=".CreateGame"
             android:label="Create Game" />
         <activity
+            android:name=".CreatePost"
+            android:label="Create Post" />
+        <activity
             android:name=".LoginPage"
             android:label="LoginPage" />
+        <activity
+            android:name=".PostPage"
+            android:label="GameFinder" />
+        <activity
+            android:name=".UserAccountPage"
+            android:label="UserAccountPage" />
     </application>
 
 </manifest>

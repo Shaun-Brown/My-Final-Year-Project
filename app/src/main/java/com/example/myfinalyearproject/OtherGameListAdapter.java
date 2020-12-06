@@ -10,15 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfinalyearproject.Models.GameModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OtherGameListAdapter extends RecyclerView.Adapter<OtherGameListAdapter.OtherGameViewHolder> {
 
-    private List<CreateGameModel> cGame;
+    private List<GameModel> cGame;
     private Context gContext;
 
-    public OtherGameListAdapter(ArrayList<CreateGameModel> cGame, Context gContext) {
+    public OtherGameListAdapter(ArrayList<GameModel> cGame, Context gContext) {
         this.cGame= cGame;
         this.gContext = gContext;
     }
@@ -31,7 +33,7 @@ public class OtherGameListAdapter extends RecyclerView.Adapter<OtherGameListAdap
 
     @Override
     public void onBindViewHolder(OtherGameViewHolder holder, int position) {
-        CreateGameModel createGame = cGame.get(position);
+        GameModel createGame = cGame.get(position);
         holder.cGameName.setText(createGame.getName());
         holder.cGameDesc.setText(createGame.getDescription());
     }

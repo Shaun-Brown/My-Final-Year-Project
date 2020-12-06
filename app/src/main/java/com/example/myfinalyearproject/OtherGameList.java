@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfinalyearproject.Models.GameModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +25,7 @@ public class OtherGameList extends AppCompatActivity {
 
     private static final String TAG = "OtherGameList";
 
-    ArrayList<CreateGameModel> cGame = new ArrayList<>();
+    ArrayList<GameModel> cGame = new ArrayList<>();
     private RecyclerView ogameRView;
     private OtherGameListAdapter oglAdapter;
 
@@ -70,7 +71,7 @@ public class OtherGameList extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                CreateGameModel game = document.toObject(CreateGameModel.class);
+                                GameModel game = document.toObject(GameModel.class);
                                 cGame.add(game);
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 ogameRView.scrollToPosition(cGame.size() - 1);

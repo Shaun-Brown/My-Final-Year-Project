@@ -10,27 +10,23 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myfinalyearproject.R;
+import com.example.myfinalyearproject.Models.GameModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CreateGame extends AppCompatActivity {
 
     private static final String TAG = "CreateGame";
-    Button btnAdd, btnView;
+    Button btnCreate;
     EditText gameName, gameDesc;
 
-    Map<String, CreateGameModel> cGame = new HashMap<>();
+    Map<String, GameModel> cGame = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +35,15 @@ public class CreateGame extends AppCompatActivity {
 
         gameName = findViewById(R.id.gameNameEdit);
         gameDesc = findViewById(R.id.gameDescEdit);
-        btnAdd = findViewById(R.id.createGameBtn);
-        btnView = findViewById(R.id.viewNewGame);
+        btnCreate = findViewById(R.id.createGameBtn);
 
 
-        btnView.setOnClickListener(new View.OnClickListener() {
+        btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateGame.this, OtherGameList.class);
                 startActivity(intent);
+                createGame();
             }
         });
 

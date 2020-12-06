@@ -3,8 +3,9 @@ package com.example.myfinalyearproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,17 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfinalyearproject.Models.GameModel;
 import com.example.myfinalyearproject.utility.VerticalSpacingItemDecorator;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements GameListAdapter.OnGameListener {
@@ -38,26 +37,50 @@ public class MainActivity extends AppCompatActivity implements GameListAdapter.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-        Button signIn = findViewById(R.id.signInBtn);
 
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(auth.getCurrentUser() != null) {
-                    auth.signOut();
-                    finish();
-                    startActivity(getIntent());
-                } else {
-                    Intent intent = new Intent(MainActivity.this, LoginPage.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
         gameList();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.account_menu, menu);
+        MenuItem item = menu.findItem(R.id.accountIcon);
+        MenuItem item2 = menu.findItem(R.id.signInBtn);
+        if (auth.getCurrentUser() != null) {
+            item2.setVisible(false);
+        } else {
+            item.setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.accountBtn:
+                toastMessage("account selected");
+                Intent intent = new Intent(MainActivity.this, UserAccountPage.class);
+                startActivity(intent);
+                return true;
+            case R.id.signOutBtn:
+                toastMessage("sign out selected");
+                auth.signOut();
+                finish();
+                startActivity(getIntent());
+                return true;
+            case R.id.signInBtn:
+                toastMessage("sign in selected");
+                Intent intent2 = new Intent(MainActivity.this, LoginPage.class);
+                startActivity(intent2);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     }
 
@@ -69,13 +92,13 @@ public class MainActivity extends AppCompatActivity implements GameListAdapter.O
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                GameModel game = document.toObject(GameModel.class);
-                                game.setID(document.getId());
-                                games.add(game);
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                gameRView.scrollToPosition(games.size() - 1);
-                                glAdapter.notifyItemInserted(games.size() - 1);
-                            }
+                            GameModel game = document.toObject(GameModel.class);
+                            game.setID(document.getId());
+                            games.add(game);
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            gameRView.scrollToPosition(games.size() + 1);
+                            glAdapter.notifyItemInserted(games.size() + 1);
+                        }
                     }
                 });
 
