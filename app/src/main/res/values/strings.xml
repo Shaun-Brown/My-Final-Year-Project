@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">MyFinalYearProject</string>
     <string name="game_finder">Game Finder</string>
-    <string name="password">Password</string>
     <string name="phone_number">Phone Number</string>
-    <string name="register">Register</string>
     <string name="full_name">Full Name</string>
     <string name="sign_in">Sign In</string>
     <string name="game">Game</string>
@@ -18,7 +16,7 @@
     <string name="game_img">gameImg</string>
     <string name="game_name">Game Name</string>
     <string name="game_desc">Game Desc</string>
-    <string name="email">Email/Username</string>
+    <string name="email">Email</string>
     <string name="game_list">Game List</string>
     <string name="user_message">Message</string>
     <string name="gameImage">Game Image</string>
@@ -37,7 +35,7 @@
     <string name="uImage">User Image</string>
     <string name="postDescription">Post Description</string>
     <string name="userName">Username</string>
-    <string name="userEmail">Email...</string>
+    <string name="userEmail">Email…</string>
     <string name="noAccount">Do not have an account?</string>
     <string name="sendBtn">Send</string>
     <string name="accountBtn">Account</string>
@@ -48,4 +46,8 @@
     <string name="userPostDescription">User Post Description</string>
     <string name="userPost">User Post</string>
     <string name="user_name">Username</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>

@@ -26,7 +26,7 @@ public class CreateAccount extends AppCompatActivity {
 
     private static final String TAG = "CreateAccount";
     private FirebaseAuth auth;
-    private FirebaseFirestore db;
+    private FirebaseFirestore fStore;
     private EditText email, password, userName, image;
     private Button register;
     private String userID;
@@ -36,14 +36,14 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account_layout);
 
-        email = findViewById(R.id.emailEdit);
-        password = findViewById(R.id.passwordEdit);
-        userName = findViewById(R.id.userNameEdit);
-        image = findViewById(R.id.imageEdit);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        userName = findViewById(R.id.userName);
+        image = findViewById(R.id.image);
         register = findViewById(R.id.btnRegister);
 
         auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,20 +76,13 @@ public class CreateAccount extends AppCompatActivity {
                             } else {
                                 toastMessage( "User Created.");
                                 userID = auth.getCurrentUser().getUid();
-                                DocumentReference docRef = db.collection("users").document(userID);
+                                DocumentReference docRef = fStore.collection("users").document(userID);
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("user_ID", userID);
                                 user.put("user_email_address", uEmail);
                                 user.put("user_name", uName);
                                 user.put("user_image", uImage);
-                                docRef.set(user)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        finish();
-                                        Log.d(TAG, "on Success: user was created for: " + userID);
-                                    }
-                                });
+                                docRef.set(user);
                             }
                         }
                     });

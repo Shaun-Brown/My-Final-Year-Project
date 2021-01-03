@@ -76,35 +76,6 @@ public class PostPage extends AppCompatActivity {
 
         });
         userPostList();
-        postUsersList();
-    }
-
-    private void postUsersList(){
-        fStore.collection("users")
-//                .whereEqualTo("post_id", posts.getPost_ID())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            UserModel uModel = document.toObject(UserModel.class);
-                            user.add(uModel);
-                            Log.d(TAG, document.getId() + " => " + document.getData());
-                            userRView.scrollToPosition(user.size() + 1);
-                            uAdapter.notifyItemInserted(user.size() + 1);
-                            uAdapter.notifyDataSetChanged();
-                        }
-                    }
-                });
-        postUserRecyclerView();
-    }
-
-    private void postUserRecyclerView() {
-        userRView = findViewById(R.id.postUsers);
-        userRView.setHasFixedSize(true);
-        userRView.setLayoutManager(new LinearLayoutManager(this));
-        uAdapter = new UserAdapter(user, this);
-        userRView.setAdapter(uAdapter);
     }
 
     private void createUserPost() {

@@ -34,8 +34,8 @@ public class LoginPage extends AppCompatActivity {
 
         setContentView(R.layout.login_page_layout);
 
-        userName = findViewById(R.id.emailEdit);
-        password = findViewById(R.id.passwordEdit);
+        userName = findViewById(R.id.email);
+        password = findViewById(R.id.password);
         Button login = findViewById(R.id.loginBtn);
         Button createAccount = findViewById(R.id.createAccountBtn);
 
@@ -53,34 +53,31 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 String userN = userName.getText().toString();
                 String uPassword = password.getText().toString();
-
                 if (TextUtils.isEmpty(userN)) {
                     toastMessage("Enter email address!");
                     return;
                 }
-
                 if (TextUtils.isEmpty(uPassword)) {
                     toastMessage("Enter password!");
                     return;
                 }
                 auth.signInWithEmailAndPassword(userN, uPassword)
-                        .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        password.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        toastMessage(getString(R.string.auth_failed));
-                                    }
-                                } else {
-                                    Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
+                    .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            if (password.length() < 6) {
+                                password.setError(getString(R.string.minimum_password));
+                            } else {
+                                toastMessage(getString(R.string.auth_failed));
                             }
-                        });
+                        } else {
+                            Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        }
+                    });
             }
         });
     }
