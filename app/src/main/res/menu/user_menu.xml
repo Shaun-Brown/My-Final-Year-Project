@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userAccountItemView">
+
+    <item
+        android:id="@+id/otherUserAccountItemView"
+        android:title="@string/otherUserAccount"/>
+
+    <item
+        android:id="@+id/privateMessageItemView"
+        android:title="@string/private_message"/>
+
+</menu>

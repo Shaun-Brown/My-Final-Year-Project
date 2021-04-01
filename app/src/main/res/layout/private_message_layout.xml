@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/messaging_recyclerview"
+        app:layout_constraintBottom_toTopOf="@+id/text_chat_input"/>
+
+    <RelativeLayout
+        android:id="@+id/text_chat_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="vertical"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <EditText
+            android:layout_marginStart="16dp"
+            android:id="@+id/edit_chat_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/chat_send_btn"
+            android:background="@android:color/transparent"
+            android:hint="@string/enter_message"
+            android:inputType="text|textCapSentences"
+            android:maxLines="6"
+            android:autofillHints="@string/enter_message"/>
+
+        <Button
+            android:id="@+id/chat_send_btn"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:drawable/ic_menu_send"
+            android:textColor="@color/colorPrimary"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

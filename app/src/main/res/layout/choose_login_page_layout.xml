@@ -14,18 +14,22 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/game_finder"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:layout_margin="20dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:id="@+id/loginBtn"/>
+        android:id="@+id/loginBtn"
+        android:layout_marginVertical="10dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        android:id="@+id/registerBtn"/>
+        android:id="@+id/registerBtn"
+        android:layout_marginVertical="10dp"/>
 
 </LinearLayout>

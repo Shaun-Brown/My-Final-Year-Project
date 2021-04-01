@@ -1,27 +1,33 @@
 package com.example.myfinalyearproject.Models;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.Timestamp;
+
 public class PostModel implements Parcelable {
 
-    private String post_ID;
-    private String post_description;
-    private String post_name;
+    private String user_post_ID, user_post_name, user_ID, user_name;
+    private Uri user_img;
+    private Long user_post_timestamp;
 
     public PostModel(){
     }
 
-    public PostModel(String post_ID, String post_description, String post_name){
-        this.post_ID = post_ID;
-        this.post_description = post_description;
-        this.post_name = post_name;
+    public PostModel(String user_post_name, String user_ID, String user_name){
+        this.user_post_name = user_post_name;
+        this.user_ID = user_ID;
+        this.user_name = user_name;
     }
 
     protected PostModel(Parcel in) {
-        post_ID = in.readString();
-        post_description = in.readString();
-        post_name = in.readString();
+        user_post_ID = in.readString();
+        user_post_name = in.readString();
+        user_ID = in.readString();
+        user_name = in.readString();
+        user_post_timestamp = in.readLong();
+        user_img = in.readParcelable(Uri.class.getClassLoader());
     }
 
     public static final Creator<PostModel> CREATOR = new Creator<PostModel>() {
@@ -36,27 +42,37 @@ public class PostModel implements Parcelable {
         }
     };
 
-    public String getPost_ID() {
-        return post_ID;
+    public String getUser_Post_ID() {
+        return user_post_ID;
     }
 
-    public void setPost_ID(String post_ID) {
-        this.post_ID = post_ID;
+    public void setUser_Post_ID(String user_post_ID) { this. user_post_ID = user_post_ID; }
+
+    public String getUser_Post_Name(){
+        return user_post_name;
     }
 
-    public String getPost_Description(){
-        return post_description;
+    public void setUser_Post_Name(String user_post_name) { this.user_post_name = user_post_name; }
+
+    public String getUser_ID() {
+        return user_ID;
     }
 
-    public void setPost_Description(String post_description) {
-        this.post_description = post_description;
+    public String getUser_Name() {
+        return user_name;
     }
 
-    public String getPost_Name(){
-        return post_name;
+    public Uri getUser_Image() {
+        return user_img;
     }
 
-    public void setPost_Name(String post_name) { this.post_name = post_name; }
+    public Long getUser_Post_Timestamp(){
+        return user_post_timestamp;
+    }
+
+    public void setUser_Post_Timestamp(Long user_post_timestamp){
+        this.user_post_timestamp = user_post_timestamp;
+    }
 
     @Override
     public int describeContents() {
@@ -65,8 +81,11 @@ public class PostModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(post_ID);
-        dest.writeString(post_description);
-        dest.writeString(post_name);
+        dest.writeString(user_post_ID);
+        dest.writeString(user_post_name);
+        dest.writeString(user_ID);
+        dest.writeString(user_name);
+        dest.writeLong(user_post_timestamp);
+        dest.writeParcelable(user_img, flags);
     }
 }

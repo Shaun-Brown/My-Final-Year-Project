@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginPage extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private EditText  userName, password;
+    private EditText  userEmail, userPassword;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -27,15 +27,10 @@ public class LoginPage extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginPage.this, MainActivity.class));
-            finish();
-        }
-
         setContentView(R.layout.login_page_layout);
 
-        userName = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        userEmail = findViewById(R.id.email);
+        userPassword = findViewById(R.id.password);
         Button login = findViewById(R.id.loginBtn);
         Button createAccount = findViewById(R.id.createAccountBtn);
 
@@ -51,9 +46,9 @@ public class LoginPage extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userN = userName.getText().toString();
-                String uPassword = password.getText().toString();
-                if (TextUtils.isEmpty(userN)) {
+                String uEmail = userEmail.getText().toString();
+                String uPassword = userPassword.getText().toString();
+                if (TextUtils.isEmpty(uEmail)) {
                     toastMessage("Enter email address!");
                     return;
                 }
@@ -61,21 +56,17 @@ public class LoginPage extends AppCompatActivity {
                     toastMessage("Enter password!");
                     return;
                 }
-                auth.signInWithEmailAndPassword(userN, uPassword)
+                auth.signInWithEmailAndPassword(uEmail, uPassword)
                     .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            if (password.length() < 6) {
-                                password.setError(getString(R.string.minimum_password));
+                            if (!task.isSuccessful()) {
+                                toastMessage("An error has occurred, please try again");
                             } else {
-                                toastMessage(getString(R.string.auth_failed));
+                                Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
-                        } else {
-                            Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
                         }
                     });
             }

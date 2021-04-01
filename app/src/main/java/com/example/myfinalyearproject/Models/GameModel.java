@@ -7,10 +7,7 @@ import com.google.firebase.firestore.Exclude;
 
 public class GameModel implements Parcelable {
 
-    private String game_id;
-    private String game_name;
-    private String game_description;
-    private String game_image;
+    private String game_id, game_name, game_description, game_image;
 
     public GameModel(){
     }
@@ -42,31 +39,31 @@ public class GameModel implements Parcelable {
     };
 
     @Exclude
-    public String getID() { return game_id;}
+    public String getGame_ID() { return game_id;}
 
-    public void setID(String game_id) { this.game_id = game_id;}
+    public void setGame_ID(String game_id) { this.game_id = game_id;}
 
-    public String getName() {
+    public String getGame_Name() {
         return game_name;
     }
 
-    public void setName(String game_name) {
+    public void setGame_Name(String game_name) {
         this.game_name = game_name;
     }
 
-    public String getDescription() {
+    public String getGame_Description() {
         return game_description;
     }
 
-    public void setDescription(String description) {
+    public void setGame_Description(String description) {
         this.game_description = description;
     }
 
-    public String getImage() {
+    public String getGame_Image() {
         return game_image;
     }
 
-    public void setImage(String game_image) {
+    public void setGame_Image(String game_image) {
         this.game_image = game_image;
     }
 

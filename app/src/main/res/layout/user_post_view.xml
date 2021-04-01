@@ -2,16 +2,15 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:id="@+id/gameListViewParent"
+    android:layout_height="80dp"
+    android:id="@+id/postViewParent"
     android:orientation="horizontal"
     android:weightSum="100"
     android:gravity="center_vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/userImage"
         android:src="@mipmap/ic_launcher"/>
 
@@ -20,20 +19,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="1"
-        android:text="@string/userName"
+        android:text="@string/postName"
         android:layout_toEndOf="@id/userImage"
         android:layout_marginStart="10dp"
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/userPost"
+        android:id="@+id/userMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/userName"
         android:layout_marginStart="10dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@id/userImage"
-        android:text="@string/userPost"
-        android:textSize="16sp"/>
+        android:text="@string/postDescription"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/userPostTime"
+        android:layout_width="120dp"
+        android:layout_height="15dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/time_stamp"
+        android:textSize="12sp" />
 
 </RelativeLayout>

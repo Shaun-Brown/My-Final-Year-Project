@@ -1,119 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/createPostView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/postImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="@string/create_post"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <TextView
-        android:id="@+id/postNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="500dp"
-        android:text="@string/post"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createPostView"
-        app:layout_constraintVertical_bias="0.842" />
+        android:layout_centerInParent="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:src="@drawable/account_circle_icon" />
 
     <EditText
         android:id="@+id/postNameEdit"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="432dp"
-        android:autofillHints="@string/game"
-        android:inputType="text"
-        android:labelFor="@id/gameNameEdit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postNameText"
-        app:layout_constraintVertical_bias="0.684"
-        tools:ignore="LabelFor" />
-
-    <TextView
-        android:id="@+id/postDescText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="372dp"
-        android:text="@string/postDescription"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postNameEdit"
-        app:layout_constraintVertical_bias="0.888" />
+        android:layout_below="@id/postImageView"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:inputType="text|textCapSentences"
+        android:hint="@string/postName"
+        android:autofillHints="@string/postName" />
 
     <EditText
         android:id="@+id/postDescEdit"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="240dp"
-        android:autofillHints="@string/description"
-        android:inputType="textShortMessage"
-        android:labelFor="@id/gameDescEdit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postDescText"
-        app:layout_constraintVertical_bias="0.605"
-        tools:ignore="LabelFor" />
+        android:minHeight="100dp"
+        android:gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/postNameEdit"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:inputType="textImeMultiLine|textCapSentences"
+        android:hint="@string/postDescription"
+        android:autofillHints="@string/postDescription" />
 
     <Button
         android:id="@+id/createPostBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="144dp"
+        android:layout_below="@+id/postDescEdit"
+        android:gravity="center"
+
+        android:layout_margin="10dp"
+        android:padding="10dp"
         android:text="@string/create_post"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postDescEdit"
-        app:layout_constraintVertical_bias="0.987" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

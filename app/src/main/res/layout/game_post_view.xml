@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:layout_height="100dp"
     android:id="@+id/gameListViewParent"
     android:orientation="horizontal"
     android:weightSum="100"
@@ -12,28 +12,40 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:id="@+id/userImage"
+        android:id="@+id/gamePostImage"
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/postName"
+        android:id="@+id/gamePostName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="2dp"
+        android:layout_toStartOf="@+id/gamePostTime"
+        android:layout_toEndOf="@id/gamePostImage"
         android:lines="1"
         android:text="@string/postName"
-        android:layout_toEndOf="@id/userImage"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/postDesc"
+        android:id="@+id/gamePostDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/postName"
+        android:layout_below="@+id/gamePostName"
         android:layout_marginStart="10dp"
         android:layout_marginTop="2dp"
-        android:layout_toEndOf="@id/userImage"
+        android:layout_toEndOf="@id/gamePostImage"
         android:text="@string/postDescription"
         android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/gamePostTime"
+        android:layout_width="80dp"
+        android:layout_height="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="end"
+        android:text="@string/time_stamp"
+        android:textSize="12sp" />
 
 </RelativeLayout>

@@ -6,27 +6,39 @@ import android.os.Parcelable;
 public class UserModel implements Parcelable {
 
     private String user_ID;
-    private String user_email_address;
     private String user_name;
-    private String user_password;
-    private String user_image;
+    private String user_email_address;
+    private String name;
+    private String password;
+    private String user_age;
+    private String user_game_tag;
 
     public UserModel(){
     }
 
-    public UserModel(String uid, String user_email_address, String user_name, String user_image){
-        this.user_ID = uid;
-        this.user_email_address = user_email_address;
+    public UserModel(String user_ID, String user_name){
+        this.user_ID = user_ID;
         this.user_name = user_name;
-        this.user_image = user_image;
+    }
+
+    public UserModel(String user_ID, String user_name, String user_email_address, String name, String password, String user_age, String user_game_tag){
+        this.user_ID = user_ID;
+        this.user_name = user_name;
+        this.user_email_address = user_email_address;
+        this.name = name;
+        this.password = password;
+        this.user_age = user_age;
+        this.user_game_tag = user_game_tag;
     }
 
     protected UserModel(Parcel in) {
         user_ID = in.readString();
-        user_email_address = in.readString();
-        user_password = in.readString();
         user_name = in.readString();
-        user_image = in.readString();
+        user_email_address = in.readString();
+        name = in.readString();
+        password = in.readString();
+        user_age = in.readString();
+        user_game_tag = in.readString();
     }
 
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
@@ -45,8 +57,12 @@ public class UserModel implements Parcelable {
         return user_ID;
     }
 
-    public void setUser_ID(String uid){
-        this.user_ID = uid;
+    public String getUser_Name() {
+        return user_name;
+    }
+
+    public void setUser_Name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getUser_Email_Address() {
@@ -57,28 +73,36 @@ public class UserModel implements Parcelable {
         this.user_email_address = user_email_address;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPassword() {
-        return user_password;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.user_password = password;
+        this.password = password;
     }
 
-    public String getUser_Name() {
-        return user_name;
+    public String getUser_Age() {
+        return user_age;
     }
 
-    public void setUser_Name(String user_name) {
-        this.user_name = user_name;
+    public void setUser_Age(String user_age) {
+        this.user_age = user_age;
     }
 
-    public String getUser_Image(){
-        return user_image;
+    public String getUser_Game_Tag() {
+        return user_game_tag;
     }
 
-    public void setUser_Image(String user_image){
-        this.user_image = user_image;
+    public void setGame_Tag(String user_game_tag) {
+        this.user_game_tag = user_game_tag;
     }
 
     @Override
@@ -89,9 +113,11 @@ public class UserModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(user_ID);
-        dest.writeString(user_email_address);
-        dest.writeString(user_password);
         dest.writeString(user_name);
-        dest.writeString(user_image);
+        dest.writeString(user_email_address);
+        dest.writeString(name);
+        dest.writeString(password);
+        dest.writeString(user_age);
+        dest.writeString(user_game_tag);
     }
 }

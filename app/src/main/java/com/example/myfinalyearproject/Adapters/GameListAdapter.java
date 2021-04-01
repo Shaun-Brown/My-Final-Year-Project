@@ -1,4 +1,4 @@
-package com.example.myfinalyearproject;
+package com.example.myfinalyearproject.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myfinalyearproject.Models.GameModel;
+import com.example.myfinalyearproject.R;
 
 import java.util.ArrayList;
 
@@ -18,31 +19,31 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameViewHolder> {
 
-    private ArrayList<GameModel> games;
-    private OnGameListener gOnGameListener;
-    private Context gContext;
+    private final ArrayList<GameModel> games;
+    private final OnGameListener mOnGameListener;
+    private final Context gContext;
 
-    GameListAdapter(ArrayList<GameModel> games, Context gContext, OnGameListener onGameListener) {
+    public GameListAdapter(ArrayList<GameModel> games, Context gContext, OnGameListener onGameAdapter) {
         this.games = games;
-        this.gOnGameListener = onGameListener;
+        this.mOnGameListener = onGameAdapter;
         this.gContext = gContext;
     }
 
     @Override
     public GameViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_view, parent, false);
-        return new GameViewHolder(view, gOnGameListener);
+        return new GameViewHolder(view, mOnGameListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
         Glide.with(gContext)
                 .asBitmap()
-                .load(games.get(position).getImage())
+                .load(games.get(position).getGame_Image())
                 .into(holder.gameImage);
 
-        holder.gameName.setText(games.get(position).getName());
-        holder.gameDesc.setText(games.get(position).getDescription());
+        holder.gameName.setText(games.get(position).getGame_Name());
+        holder.gameDesc.setText(games.get(position).getGame_Description());
     }
 
     @Override
@@ -54,14 +55,14 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameVi
 
         CircleImageView gameImage;
         TextView gameName, gameDesc;
-        OnGameListener gOnGameListener;
+        OnGameListener mOnGameListener;
 
         GameViewHolder(@NonNull View itemView, OnGameListener onGameListener) {
             super(itemView);
             gameImage = itemView.findViewById(R.id.gameImage);
             gameName = itemView.findViewById(R.id.gameName);
             gameDesc = itemView.findViewById(R.id.gameDesc);
-            gOnGameListener = onGameListener;
+            mOnGameListener = onGameListener;
 
             itemView.setClickable(true);
             itemView.setOnClickListener(this);
@@ -70,7 +71,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameVi
 
         @Override
         public void onClick(View v) {
-            gOnGameListener.onGameClick(getAdapterPosition());
+            mOnGameListener.onGameClick(getAdapterPosition());
         }
     }
 
