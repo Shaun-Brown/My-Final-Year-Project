@@ -29,6 +29,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameVi
         this.gContext = gContext;
     }
 
+    @NonNull
     @Override
     public GameViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_view, parent, false);

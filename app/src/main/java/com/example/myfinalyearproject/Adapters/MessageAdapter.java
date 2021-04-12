@@ -17,6 +17,11 @@ import com.example.myfinalyearproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -26,8 +31,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private static final int VIEW_TYPE_MESSAGE_SENT = 1;
-    private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
+    private static final int VIEW_TYPE_MESSAGE_SENT = 0;
+    private static final int VIEW_TYPE_MESSAGE_RECEIVED = 1;
 
     private static final String TAG = "MessageAdapter";
     private ArrayList<MessageModel> messages;
@@ -65,9 +70,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
 
-        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final FirebaseStorage storageRef = FirebaseStorage.getInstance();
 
         int type = getItemViewType(position);
@@ -75,13 +79,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (type == VIEW_TYPE_MESSAGE_SENT) {
             final SendMessageHolder sendMessageHolder = (SendMessageHolder) holder;
             sendMessageHolder.message_me.setText(messages.get(position).getMessage_Name());
-//            sendMessageHolder.text_timestamp_me.setText(messages.get(position).getMessage_Timestamp().toString());
+            sendMessageHolder.text_timestamp_me.setText(messages.get(position).getMessage_Timestamp());
         } else {
             final ReceiveMessageHolder receiveMessageHolder = (ReceiveMessageHolder) holder;
-//            receiveMessageHolder.chat_date_other.setText(messages.get(position).getMessage_Date().toString());
+
             receiveMessageHolder.user_name_other.setText(messages.get(position).getReceiver_Name());
             receiveMessageHolder.message_other.setText(messages.get(position).getMessage_Name());
-//            receiveMessageHolder.text_timestamp_other.setText(messages.get(position).getMessage_Timestamp().toString());
+            receiveMessageHolder.text_timestamp_other.setText(messages.get(position).getMessage_Timestamp());
+
             StorageReference imgStore = storageRef.getReference("users/"+ messages.get(position).getReceiver_ID() +"/profile.jpg");
             imgStore.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
@@ -114,11 +119,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     static class SendMessageHolder extends RecyclerView.ViewHolder {
 
-        TextView chat_date_me, message_me, text_timestamp_me;
+        TextView message_me, text_timestamp_me;
 
         public SendMessageHolder(@NonNull View itemView) {
             super(itemView);
-            chat_date_me = itemView.findViewById(R.id.chat_date_me);
             message_me = itemView.findViewById(R.id.message_me);
             text_timestamp_me = itemView.findViewById(R.id.text_timestamp_me);
         }
@@ -127,11 +131,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     static class ReceiveMessageHolder extends RecyclerView.ViewHolder {
 
         CircleImageView user_image_other;
-        TextView chat_date_other, user_name_other, message_other, text_timestamp_other;
+        TextView user_name_other, message_other, text_timestamp_other;
 
         public ReceiveMessageHolder(@NonNull View itemView) {
             super(itemView);
-            chat_date_other = itemView.findViewById(R.id.chat_date_other);
             user_image_other = itemView.findViewById(R.id.user_image_other);
             user_name_other = itemView.findViewById(R.id.user_name_other);
             message_other = itemView.findViewById(R.id.message_other);

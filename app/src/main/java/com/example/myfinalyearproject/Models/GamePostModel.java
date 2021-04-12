@@ -8,9 +8,8 @@ import com.google.firebase.Timestamp;
 
 public class GamePostModel implements Parcelable {
 
-    private String game_post_ID, game_post_name, game_post_description, user_ID, game_ID;
+    private String game_post_ID, game_post_name, game_post_description, user_ID, game_ID, game_post_timestamp;
     private Uri game_post_image;
-    private Long game_post_timestamp;
 
     public GamePostModel(){
     }
@@ -30,7 +29,7 @@ public class GamePostModel implements Parcelable {
         user_ID = in.readString();
         game_ID = in.readString();
         game_post_image = in.readParcelable(Uri.class.getClassLoader());
-        game_post_timestamp = in.readParcelable(Timestamp.class.getClassLoader());
+        game_post_timestamp = in.readString();
     }
 
     public static final Creator<GamePostModel> CREATOR = new Creator<GamePostModel>() {
@@ -81,11 +80,11 @@ public class GamePostModel implements Parcelable {
 
     public String getGame_ID() { return game_ID; }
 
-    public Long getGame_Post_Timestamp() {
+    public String getGame_Post_Timestamp() {
         return game_post_timestamp;
     }
 
-    public void setGame_Post_Timestamp(Long game_post_timestamp) {
+    public void setGame_Post_Timestamp(String game_post_timestamp) {
         this.game_post_timestamp = game_post_timestamp;
     }
 
@@ -102,6 +101,6 @@ public class GamePostModel implements Parcelable {
         dest.writeString(user_ID);
         dest.writeString(game_ID);
         dest.writeParcelable(game_post_image, flags);
-        dest.writeLong(game_post_timestamp);
+        dest.writeString(game_post_timestamp);
     }
 }

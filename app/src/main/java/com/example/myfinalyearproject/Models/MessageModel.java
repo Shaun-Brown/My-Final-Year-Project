@@ -5,13 +5,12 @@ import android.os.Parcelable;
 
 import com.google.firebase.firestore.ServerTimestamp;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MessageModel implements Parcelable {
 
-    String message_ID, message_name, sender_ID, receiver_ID, receiver_name;
-//    @ServerTimestamp Date message_timestamp;
-//    @ServerTimestamp Date message_date;
+    String message_ID, message_name, sender_ID, receiver_ID, receiver_name, message_timestamp, message_date;
 
     public MessageModel(){
 
@@ -79,25 +78,25 @@ public class MessageModel implements Parcelable {
         return receiver_name;
     }
 
-    public void setReceiver_Name(String user_name_other){
-        this.receiver_name = user_name_other;
+    public void setReceiver_Name(String receiver_name){
+        this.receiver_name = receiver_name;
     }
 
-//    public Date getMessage_Timestamp(){
-//        return message_timestamp;
-//    }
+    public String getMessage_Timestamp(){
+        return message_timestamp;
+    }
 
-//    public void setMessage_Timestamp(Date message_timestamp){
-//        this.message_timestamp = message_timestamp;
-//    }
+    public void setMessage_Timestamp(String message_timestamp){
+        this.message_timestamp = message_timestamp;
+    }
 
-//    public Date getMessage_Date(){
-//        return message_timestamp;
-//    }
+    public String getMessage_Date(){
+        return message_date;
+    }
 
-//    public void setMessage_Date(Date message_date){
-//        this.message_date = message_date;
-//    }
+    public void setMessage_Date(String message_date){
+        this.message_date = message_date;
+    }
 
     @Override
     public int describeContents() {

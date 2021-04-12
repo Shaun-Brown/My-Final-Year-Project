@@ -34,6 +34,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,6 +96,8 @@ public class CreateGamePost extends AppCompatActivity {
     private void createPost() {
         final String postN = editPostName.getText().toString().trim();
         final String postD = editPostDesc.getText().toString().trim();
+        final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        String gamePostTime = timeFormat.format(new Date());
         if (TextUtils.isEmpty(postN)) {
             toastMessage("Enter a name");
             return;
@@ -104,7 +108,7 @@ public class CreateGamePost extends AppCompatActivity {
         gamePosts.put("game_post_description", postD);
         gamePosts.put("user_ID", user_ID);
         gamePosts.put("game_ID", game_ID);
-        gamePosts.put("game_post_timestamp", ServerValue.TIMESTAMP);
+        gamePosts.put("game_post_timestamp", gamePostTime);
         final String key = dataRef.child("games").child(game_ID).child("game_posts").push().getKey();
         DatabaseReference newGamePostRef = dataRef.child("games").child(game_ID).child("game_posts").child(key);
         newGamePostRef.setValue(gamePosts)

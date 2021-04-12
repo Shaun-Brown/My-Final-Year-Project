@@ -12,13 +12,15 @@ public class UserModel implements Parcelable {
     private String password;
     private String user_age;
     private String user_game_tag;
+    private String friend_user_name;
 
     public UserModel(){
     }
 
-    public UserModel(String user_ID, String user_name){
+    public UserModel(String user_ID, String user_name, String friend_user_name){
         this.user_ID = user_ID;
         this.user_name = user_name;
+        this.friend_user_name = friend_user_name;
     }
 
     public UserModel(String user_ID, String user_name, String user_email_address, String name, String password, String user_age, String user_game_tag){
@@ -39,6 +41,7 @@ public class UserModel implements Parcelable {
         password = in.readString();
         user_age = in.readString();
         user_game_tag = in.readString();
+        friend_user_name = in.readString();
     }
 
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
@@ -101,8 +104,16 @@ public class UserModel implements Parcelable {
         return user_game_tag;
     }
 
-    public void setGame_Tag(String user_game_tag) {
+    public void setUser_Game_Tag(String user_game_tag) {
         this.user_game_tag = user_game_tag;
+    }
+
+    public String getFriend_User_Name() {
+        return friend_user_name;
+    }
+
+    public void setFriend_User_Name(String friend_user_name) {
+        this.friend_user_name = friend_user_name;
     }
 
     @Override
@@ -119,5 +130,6 @@ public class UserModel implements Parcelable {
         dest.writeString(password);
         dest.writeString(user_age);
         dest.writeString(user_game_tag);
+        dest.writeString(friend_user_name);
     }
 }

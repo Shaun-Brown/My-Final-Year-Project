@@ -8,9 +8,8 @@ import com.google.firebase.Timestamp;
 
 public class PostModel implements Parcelable {
 
-    private String user_post_ID, user_post_name, user_ID, user_name;
+    private String user_post_ID, user_post_name, user_ID, user_name, user_post_timestamp;
     private Uri user_img;
-    private Long user_post_timestamp;
 
     public PostModel(){
     }
@@ -26,7 +25,7 @@ public class PostModel implements Parcelable {
         user_post_name = in.readString();
         user_ID = in.readString();
         user_name = in.readString();
-        user_post_timestamp = in.readLong();
+        user_post_timestamp = in.readString();
         user_img = in.readParcelable(Uri.class.getClassLoader());
     }
 
@@ -66,11 +65,11 @@ public class PostModel implements Parcelable {
         return user_img;
     }
 
-    public Long getUser_Post_Timestamp(){
+    public String getUser_Post_Timestamp(){
         return user_post_timestamp;
     }
 
-    public void setUser_Post_Timestamp(Long user_post_timestamp){
+    public void setUser_Post_Timestamp(String user_post_timestamp){
         this.user_post_timestamp = user_post_timestamp;
     }
 
@@ -85,7 +84,7 @@ public class PostModel implements Parcelable {
         dest.writeString(user_post_name);
         dest.writeString(user_ID);
         dest.writeString(user_name);
-        dest.writeLong(user_post_timestamp);
+        dest.writeString(user_post_timestamp);
         dest.writeParcelable(user_img, flags);
     }
 }

@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/friendListIcon"
+        android:icon="@android:drawable/sym_action_chat"
+        android:title="@string/friendlist"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/accountIcon"
         android:icon="@drawable/account_circle_icon"
         android:title="@string/Account"
@@ -17,4 +23,5 @@
                 android:title="@string/sign_out"/>
         </menu>
     </item>
+
 </menu>

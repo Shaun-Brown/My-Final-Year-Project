@@ -129,6 +129,11 @@ public class UserAccountPage extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
+        } else if (item.getItemId() == R.id.friendListIcon) {
+            Intent intent3 = new Intent(UserAccountPage.this, FriendListPage.class);
+            startActivity(intent3);
+            finish();
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }

@@ -43,10 +43,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfilePage extends AppCompatActivity {
 
     private static final String TAG = "EditProfilePage";
-    private FirebaseDatabase firebaseDB;
-    private DatabaseReference dataRef;
     private DatabaseReference userRef;
-    private FirebaseAuth auth;
     private CircleImageView usrImg;
     private TextView usrName, usrEmail, name, pass, usrAge, usrGameTags;
     private String userID;
@@ -58,9 +55,9 @@ public class EditProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_layout);
 
-        firebaseDB = FirebaseDatabase.getInstance();
-        dataRef = firebaseDB.getReference();
-        auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
+        DatabaseReference dataRef = firebaseDB.getReference();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         fUser = auth.getCurrentUser();
         storageRef = FirebaseStorage.getInstance().getReference();
         userID = fUser.getUid();
@@ -245,8 +242,14 @@ public class EditProfilePage extends AppCompatActivity {
             onBackPressed();
             finish();
             return true;
+        } else if (item.getItemId() == R.id.friendListIcon) {
+            Intent intent = new Intent(EditProfilePage.this, FriendListPage.class);
+            startActivity(intent);
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void toastMessage(String message){

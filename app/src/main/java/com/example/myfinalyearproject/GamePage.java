@@ -146,6 +146,11 @@ public class GamePage extends AppCompatActivity implements GamePostAdapter.OnGam
                 Intent intent2 = new Intent(GamePage.this, ChooseLoginPage.class);
                 startActivity(intent2);
                 return true;
+            case R.id.friendListIcon:
+                Intent intent3 = new Intent(GamePage.this, FriendListPage.class);
+                startActivity(intent3);
+                finish();
+                return true;
             case android.R.id.home:
                 finish();
                 return true;

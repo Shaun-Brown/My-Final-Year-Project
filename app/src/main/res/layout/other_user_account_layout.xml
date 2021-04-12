@@ -43,7 +43,7 @@
             <Button
                 android:id="@+id/privateMessage"
                 android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:text="@string/private_message"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
             <Button
                 android:id="@+id/addFriend"
                 android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:text="@string/add_friend"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             <Button
                 android:id="@+id/unFriend"
                 android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:text="@string/unFriend"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

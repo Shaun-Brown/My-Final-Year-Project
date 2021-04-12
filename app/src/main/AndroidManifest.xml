@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FriendList"></activity>
         <activity android:name=".ChooseLoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +26,11 @@
             android:name=".CreateGamePost"
             android:label="CreateGamePost" />
         <activity
-            android:name=".CreateOtherGame"
-            android:label="CreateOtherGame" />
-        <activity
             android:name=".EditProfilePage"
             android:label="EditProfilePage" />
+        <activity
+            android:name=".FriendListPage"
+            android:label="FriendListPage"/>
         <activity
             android:name=".GamePage"
             android:label="Game Page" />
@@ -41,9 +40,6 @@
         <activity
             android:name=".MainActivity"
             android:label="Game Finder" />
-        <activity
-            android:name=".OtherGamePage"
-            android:label="OtherGamePostPage" />
         <activity
             android:name=".OtherUserAccountPage"
             android:label="OtherUserAccountPage" />

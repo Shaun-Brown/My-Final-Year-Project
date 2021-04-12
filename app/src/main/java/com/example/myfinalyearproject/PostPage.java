@@ -35,7 +35,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,6 +100,8 @@ public class PostPage extends AppCompatActivity implements PostAdapter.OnPostLis
 
     private void createUserPost() {
         final String uPost = uPostEdit.getText().toString();
+        final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        String postTime = timeFormat.format(new Date());
         if (TextUtils.isEmpty(uPost)) {
             toastMessage("Enter a message");
             return;
@@ -106,24 +110,26 @@ public class PostPage extends AppCompatActivity implements PostAdapter.OnPostLis
         userPosts.put("user_post_name", uPost);
         userPosts.put("user_ID", userID);
         userPosts.put("user_name", fUser.getDisplayName());
-        userPosts.put("user_post_timestamp", ServerValue.TIMESTAMP);
+        userPosts.put("user_post_timestamp", postTime);
+        userPosts.put("game_post_ID", gamePostID);
 
         final String key = dataRef.child("user_posts").push().getKey();
 
-        DatabaseReference postRef = dataRef.child("games").child(gameID).child("game_posts").child(gamePostID).child("user_posts").child(key);
+        DatabaseReference postRef = dataRef.child("user_posts").child(gamePostID).child(key);
 
         postRef.setValue(userPosts).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         toastMessage("Post Sent");
+                        finish();
+                        startActivity(getIntent());
                     }
                 });
 
     }
 
     private void userPostList() {
-
-        DatabaseReference postRef = dataRef.child("games").child(gameID).child("game_posts").child(gamePostID).child("user_posts");
+        DatabaseReference postRef = dataRef.child("user_posts").child(gamePostID);
         postRef.orderByChild("user_post_timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -171,9 +177,9 @@ public class PostPage extends AppCompatActivity implements PostAdapter.OnPostLis
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.currentUserAccountView:
-                            Intent intent = new Intent(PostPage.this, UserAccountPage.class);
-                            startActivity(intent);
-                            return true;
+                        Intent intent = new Intent(PostPage.this, UserAccountPage.class);
+                        startActivity(intent);
+                        return true;
                     case R.id.otherUserAccountItemView:
                         Intent intent2 = new Intent(PostPage.this, OtherUserAccountPage.class);
                         intent2.putExtra("userPost", uPost.get(position));
@@ -211,6 +217,11 @@ public class PostPage extends AppCompatActivity implements PostAdapter.OnPostLis
                 auth.signOut();
                 Intent intent2 = new Intent(PostPage.this, ChooseLoginPage.class);
                 startActivity(intent2);
+                return true;
+            case R.id.friendListIcon:
+                Intent intent3 = new Intent(PostPage.this, FriendListPage.class);
+                startActivity(intent3);
+                finish();
                 return true;
             case android.R.id.home:
                 onBackPressed();

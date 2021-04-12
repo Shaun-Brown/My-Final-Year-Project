@@ -29,7 +29,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements GameListAdapter.OnGameListener {
     private static final String TAG = "MainActivity";
 
-    private GameListAdapter glAdapter;
     private DatabaseReference dataRef;
     private FirebaseAuth auth;
     private final ArrayList<GameModel> games = new ArrayList<>();
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements GameListAdapter.O
         RecyclerView gameRView = findViewById(R.id.gameListView);
         gameRView.setHasFixedSize(true);
         gameRView.setLayoutManager(new LinearLayoutManager(this));
-        glAdapter = new GameListAdapter(games, this, this);
+        GameListAdapter glAdapter = new GameListAdapter(games, this, this);
         gameRView.setAdapter(glAdapter);
         glAdapter.notifyDataSetChanged();
     }
@@ -105,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements GameListAdapter.O
                 auth.signOut();
                 Intent intent2 = new Intent(MainActivity.this, ChooseLoginPage.class);
                 startActivity(intent2);
+                finish();
+                return true;
+            case R.id.friendListIcon:
+                Intent intent3 = new Intent(MainActivity.this, FriendListPage.class);
+                startActivity(intent3);
                 finish();
                 return true;
             default:
