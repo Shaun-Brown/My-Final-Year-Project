@@ -1,33 +1,21 @@
 package com.example.myfinalyearproject.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.myfinalyearproject.Models.PostModel;
-import com.example.myfinalyearproject.OtherUserAccountPage;
-import com.example.myfinalyearproject.PostPage;
 import com.example.myfinalyearproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -84,7 +72,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         holder.user_name.setText(userPost.get(position).getUser_Name());
         holder.user_message.setText(userPost.get(position).getUser_Post_Name());
-        holder.user_timestamp.setText(userPost.get(position).getUser_Post_Timestamp().toString());
+        holder.user_timestamp.setText(userPost.get(position).getUser_Post_Timestamp());
     }
 
     @Override
@@ -110,7 +98,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         @Override
         public void onClick(View v) {
-            mOnPostListener.onPostClick(v, getAdapterPosition());
+            mOnPostListener.onPostClick(v, getAbsoluteAdapterPosition());
         }
     }
 

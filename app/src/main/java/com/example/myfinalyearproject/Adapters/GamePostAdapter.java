@@ -97,7 +97,7 @@ public class GamePostAdapter extends RecyclerView.Adapter<GamePostAdapter.GamePo
 
         @Override
         public void onClick(View v) {
-            mOnGamePostListener.onGamePostClick(getAdapterPosition());
+            mOnGamePostListener.onGamePostClick(getAbsoluteAdapterPosition());
         }
     }
 

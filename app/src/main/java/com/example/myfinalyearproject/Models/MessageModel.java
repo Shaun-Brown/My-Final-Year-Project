@@ -10,15 +10,16 @@ import java.util.Date;
 
 public class MessageModel implements Parcelable {
 
-    String message_ID, message_name, sender_ID, receiver_ID, receiver_name, message_timestamp, message_date;
+    String message_ID, message_name, sender_ID, sender_name, receiver_ID, receiver_name, message_timestamp, message_date;
 
     public MessageModel(){
 
     }
 
-    public MessageModel(String message_name, String sender_ID, String receiver_ID, String receiver_name){
+    public MessageModel(String message_name, String sender_ID, String sender_name, String receiver_ID, String receiver_name){
         this.message_name = message_name;
         this.sender_ID = sender_ID;
+        this.sender_name = sender_name;
         this.receiver_ID = receiver_ID;
         this.receiver_name = receiver_name;
     }
@@ -26,6 +27,7 @@ public class MessageModel implements Parcelable {
     protected MessageModel(Parcel in) {
         message_name = in.readString();
         sender_ID = in.readString();
+        sender_name = in.readString();
         receiver_ID = in.readString();
         receiver_name = in.readString();
     }
@@ -62,24 +64,16 @@ public class MessageModel implements Parcelable {
         return sender_ID;
     }
 
-    public void setSender_ID(String sender_ID){
-        this.sender_ID = sender_ID;
+    public String getSender_Name(){
+        return sender_name;
     }
 
     public String getReceiver_ID(){
         return receiver_ID;
     }
 
-    public void setReceiver_ID(String receiver_ID){
-        this.receiver_ID = receiver_ID;
-    }
-
     public String getReceiver_Name(){
         return receiver_name;
-    }
-
-    public void setReceiver_Name(String receiver_name){
-        this.receiver_name = receiver_name;
     }
 
     public String getMessage_Timestamp(){
@@ -107,6 +101,7 @@ public class MessageModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(message_name);
         dest.writeString(sender_ID);
+        dest.writeString(sender_name);
         dest.writeString(receiver_ID);
         dest.writeString(receiver_name);
     }

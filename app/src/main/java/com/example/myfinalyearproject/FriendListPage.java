@@ -1,5 +1,14 @@
 package com.example.myfinalyearproject;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,20 +16,8 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.renderscript.Sampler;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
 import com.example.myfinalyearproject.Adapters.FriendListAdapter;
-import com.example.myfinalyearproject.Adapters.GameListAdapter;
 import com.example.myfinalyearproject.Models.FriendModel;
-import com.example.myfinalyearproject.Models.GameModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -139,6 +136,7 @@ public class FriendListPage extends AppCompatActivity implements FriendListAdapt
                 return true;
             case R.id.home:
                 onBackPressed();
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
                 return true;
             default:

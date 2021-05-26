@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/abstract_shapes_background"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/gameNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#ffffff"
         android:text="@string/sign_in"
         android:textAlignment="center"
         android:textSize="30sp"
@@ -22,6 +24,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/layout_bg_white"
             android:hint="@string/email"
             android:id="@+id/email"
             android:autofillHints="@string/email"
@@ -32,6 +35,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/layout_bg_white"
             android:hint="@string/password"
             android:id="@+id/password"
             android:autofillHints="@string/password"
@@ -52,6 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#ffffff"
         android:text="@string/noAccount"
         android:id="@+id/noAccountView"
         android:layout_gravity="center"

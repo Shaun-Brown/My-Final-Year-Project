@@ -47,7 +47,6 @@ public class PostPage extends AppCompatActivity implements PostAdapter.OnPostLis
     private FirebaseAuth auth;
     private FirebaseUser fUser;
     private DatabaseReference dataRef;
-    private PostAdapter upAdapter;
     private final ArrayList<PostModel> uPost = new ArrayList<>();
     private GamePostModel gPosts;
     private EditText uPostEdit;
@@ -156,7 +155,7 @@ public class PostPage extends AppCompatActivity implements PostAdapter.OnPostLis
         RecyclerView userPView = findViewById(R.id.userPostListView);
         userPView.setHasFixedSize(true);
         userPView.setLayoutManager(new LinearLayoutManager(this));
-        upAdapter = new PostAdapter(uPost, this, this);
+        PostAdapter upAdapter = new PostAdapter(uPost, this, this);
         userPView.setAdapter(upAdapter);
         upAdapter.notifyDataSetChanged();
     }

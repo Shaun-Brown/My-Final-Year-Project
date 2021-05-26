@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/abstract_shapes_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,8 +12,9 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:padding="10dp"
+        android:textColor="#ffffff"
         android:text="@string/postTitle"
-        android:textSize="20sp"
+        android:textSize="36sp"
         app:layout_constrainedHeight="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/postDescriptionView"/>
@@ -24,8 +25,9 @@
         android:gravity="top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="10dp"
+        android:background="@drawable/layout_bg_white"
+        android:padding="5dp"
+        android:layout_margin="5dp"
         android:text="@string/postDescription"
         android:textSize="16sp"
         app:layout_constrainedHeight="true"
@@ -38,6 +40,7 @@
         android:id="@+id/userPostListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:padding="5dp"
         android:orientation="vertical"
         app:layout_constrainedHeight="true"
@@ -49,6 +52,7 @@
         android:id="@+id/text_chat_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/layout_bg_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 

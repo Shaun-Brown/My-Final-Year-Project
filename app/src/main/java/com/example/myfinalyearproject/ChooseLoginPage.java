@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ChooseLoginPage extends AppCompatActivity {
 
-    private Button mLogin, mRegister;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -24,8 +23,8 @@ public class ChooseLoginPage extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        mLogin = findViewById(R.id.loginBtn);
-        mRegister = findViewById(R.id.registerBtn);
+        Button mLogin = findViewById(R.id.loginBtn);
+        Button mRegister = findViewById(R.id.registerBtn);
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

@@ -72,7 +72,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameVi
 
         @Override
         public void onClick(View v) {
-            mOnGameListener.onGameClick(getAdapterPosition());
+            mOnGameListener.onGameClick(getAbsoluteAdapterPosition());
         }
     }
 

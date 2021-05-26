@@ -41,7 +41,6 @@ public class UserAccountPage extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase firebaseDB;
     private DatabaseReference dataRef;
-    private DatabaseReference userRef;
     private FirebaseUser fUser;
     private FirebaseStorage storageRef;
     private CircleImageView usrImg;
@@ -88,7 +87,7 @@ public class UserAccountPage extends AppCompatActivity {
 
     private void showUserDetails(){
 
-        userRef = dataRef.child("users").child(userID);
+        DatabaseReference userRef = dataRef.child("users").child(userID);
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -25,7 +25,6 @@ public class CreateAccount extends AppCompatActivity {
     private static final String TAG = "CreateAccount";
     private FirebaseAuth auth;
     private DatabaseReference userRef;
-    private StorageReference storageRef;
     private EditText email, password, userName;
 
     @Override
@@ -40,7 +39,7 @@ public class CreateAccount extends AppCompatActivity {
         Button signIn = findViewById(R.id.btnLogin);
 
         auth = FirebaseAuth.getInstance();
-        storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         userRef = FirebaseDatabase.getInstance().getReference();
 
         register.setOnClickListener(new View.OnClickListener() {

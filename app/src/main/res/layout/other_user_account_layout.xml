@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/abstract_shapes_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -22,8 +23,10 @@
 
         <TextView
             android:id="@+id/otherUserNameText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
             android:maxHeight="60dp"
             android:hint="@string/userName"
             android:textSize="24sp"
@@ -33,7 +36,7 @@
             android:gravity="center"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
@@ -78,6 +81,7 @@
             android:id="@+id/otherUserTags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/layout_bg_white"
             android:maxHeight="50dp"
             android:hint="@string/userTags"
             android:textSize="20sp"

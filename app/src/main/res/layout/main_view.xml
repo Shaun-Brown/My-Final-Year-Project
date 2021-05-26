@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/layout_bg_white"
+    android:layout_centerVertical="true"
     android:padding="5dp"
     android:layout_margin="5dp"
     android:orientation="horizontal">
@@ -10,6 +12,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_centerVertical="true"
         android:id="@+id/gameImage"
         android:src="@mipmap/ic_launcher"/>
 
@@ -30,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gameName"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/gameImage"
         android:text="@string/description"
         android:textSize="12sp"/>

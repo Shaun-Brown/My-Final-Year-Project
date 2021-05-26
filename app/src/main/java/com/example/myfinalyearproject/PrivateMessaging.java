@@ -58,10 +58,8 @@ public class PrivateMessaging extends AppCompatActivity {
         FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = firebaseDB.getReference();
         auth = FirebaseAuth.getInstance();
-        userID = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        userID = auth.getCurrentUser().getUid();
         messageRef = dataRef.child("messages");
-
-        messageKey = messageRef.push().getKey();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -75,12 +73,14 @@ public class PrivateMessaging extends AppCompatActivity {
                 FriendModel friendMod = intent.getParcelableExtra("friend");
                 otherUserID = friendMod.getFriend_User_ID();
                 otherUserName = friendMod.getFriend_User_Name();
+                toastMessage(otherUserID);
             } else if(intent.getParcelableExtra("userPost")!=null&&intent.getParcelableExtra("friend")==null){
                 PostModel pModel = intent.getParcelableExtra("userPost");
                 otherUserID = pModel.getUser_ID();
                 otherUserName = pModel.getUser_Name();
+                toastMessage(otherUserID);
             } else {
-                toastMessage("Its broken fam");
+                toastMessage("Its broken");
             }
         }
 
@@ -102,7 +102,6 @@ public class PrivateMessaging extends AppCompatActivity {
                     toastMessage("Already there");
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -121,13 +120,9 @@ public class PrivateMessaging extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         toastMessage("Chatroom Set!");
-                        postMessage.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                sendMessage(key);
-                            }
-                        });
-
+                        getChatID();
+                        finish();
+                        startActivity(getIntent());
                     }
                 });
             }
@@ -158,6 +153,7 @@ public class PrivateMessaging extends AppCompatActivity {
     }
 
     private void sendMessage(final String ID) {
+        messageKey = messageRef.push().getKey();
         String textMessage = editMessage.getText().toString();
         if (TextUtils.isEmpty(textMessage)) {
             toastMessage("Enter a message");
@@ -167,6 +163,7 @@ public class PrivateMessaging extends AppCompatActivity {
         final Map<String, Object> userMessage = new HashMap<>();
         userMessage.put("message_name", textMessage);
         userMessage.put("sender_ID", userID);
+        userMessage.put("sender_name", Objects.requireNonNull(auth.getCurrentUser()).getDisplayName());
         userMessage.put("receiver_ID", otherUserID);
         userMessage.put("receiver_name", otherUserName);
         userMessage.put("message_timestamp", messageTime);
@@ -176,7 +173,7 @@ public class PrivateMessaging extends AppCompatActivity {
                 messageRef.child(otherUserID).child(userID).child(ID).child(messageKey).setValue(userMessage);
                 toastMessage("Successfully added!");
                 finish();
-                startActivity(getIntent());
+                getIntent();
             }
         });
 
@@ -194,7 +191,6 @@ public class PrivateMessaging extends AppCompatActivity {
                             messages.add(messagePost);
 //                            Log.d(TAG, "onDataChange: id = " + dataSnapshot.getKey());
 //                            toastMessage("Message received");
-                            toastMessage(messagePost.getSender_ID());
                         }
                         messageRecyclerView();
                     }

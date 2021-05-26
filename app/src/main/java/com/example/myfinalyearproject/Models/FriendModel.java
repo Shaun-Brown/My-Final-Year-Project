@@ -13,6 +13,7 @@ public class FriendModel implements Parcelable {
         this.user_ID = user_ID;
         this.friend_user_ID = friend_user_ID;
         this.friend_user_name = friend_user_name;
+
     }
 
     protected FriendModel(Parcel in) {

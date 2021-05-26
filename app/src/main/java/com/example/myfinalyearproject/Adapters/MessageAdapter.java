@@ -83,11 +83,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else {
             final ReceiveMessageHolder receiveMessageHolder = (ReceiveMessageHolder) holder;
 
-            receiveMessageHolder.user_name_other.setText(messages.get(position).getReceiver_Name());
+            receiveMessageHolder.user_name_other.setText(messages.get(position).getSender_Name());
             receiveMessageHolder.message_other.setText(messages.get(position).getMessage_Name());
             receiveMessageHolder.text_timestamp_other.setText(messages.get(position).getMessage_Timestamp());
 
-            StorageReference imgStore = storageRef.getReference("users/"+ messages.get(position).getReceiver_ID() +"/profile.jpg");
+            StorageReference imgStore = storageRef.getReference("users/"+ messages.get(position).getSender_ID() +"/profile.jpg");
             imgStore.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
