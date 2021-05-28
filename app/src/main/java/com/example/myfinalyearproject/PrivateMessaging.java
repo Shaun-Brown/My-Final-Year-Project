@@ -73,12 +73,10 @@ public class PrivateMessaging extends AppCompatActivity {
                 FriendModel friendMod = intent.getParcelableExtra("friend");
                 otherUserID = friendMod.getFriend_User_ID();
                 otherUserName = friendMod.getFriend_User_Name();
-                toastMessage(otherUserID);
             } else if(intent.getParcelableExtra("userPost")!=null&&intent.getParcelableExtra("friend")==null){
                 PostModel pModel = intent.getParcelableExtra("userPost");
                 otherUserID = pModel.getUser_ID();
                 otherUserName = pModel.getUser_Name();
-                toastMessage(otherUserID);
             } else {
                 toastMessage("Its broken");
             }
@@ -96,10 +94,8 @@ public class PrivateMessaging extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(!snapshot.child(userID).child(otherUserID).exists()||!snapshot.child(otherUserID).child(userID).exists()){
                     createChatRoom();
-                    toastMessage("Created new one");
                 } else {
                     getChatID();
-                    toastMessage("Already there");
                 }
             }
             @Override
@@ -119,10 +115,7 @@ public class PrivateMessaging extends AppCompatActivity {
                 messageRef.child(otherUserID).child(userID).setValue(chatRoom).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        toastMessage("Chatroom Set!");
                         getChatID();
-                        finish();
-                        startActivity(getIntent());
                     }
                 });
             }
@@ -135,7 +128,6 @@ public class PrivateMessaging extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     chatID = snapshot.child("chatroom_key").getValue().toString();
-                    toastMessage(chatID);
                     messageView(chatID);
                     postMessage.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -171,9 +163,8 @@ public class PrivateMessaging extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 messageRef.child(otherUserID).child(userID).child(ID).child(messageKey).setValue(userMessage);
-                toastMessage("Successfully added!");
                 finish();
-                getIntent();
+                startActivity(getIntent());
             }
         });
 
@@ -190,7 +181,6 @@ public class PrivateMessaging extends AppCompatActivity {
                             messagePost.setMessage_ID(dataSnapshot.getKey());
                             messages.add(messagePost);
 //                            Log.d(TAG, "onDataChange: id = " + dataSnapshot.getKey());
-//                            toastMessage("Message received");
                         }
                         messageRecyclerView();
                     }

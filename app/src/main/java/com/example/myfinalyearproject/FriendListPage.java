@@ -117,7 +117,6 @@ public class FriendListPage extends AppCompatActivity implements FriendListAdapt
         return true;
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -136,7 +135,8 @@ public class FriendListPage extends AppCompatActivity implements FriendListAdapt
                 return true;
             case R.id.home:
                 onBackPressed();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent3 = new Intent(FriendListPage.this, MainActivity.class);
+                startActivity(intent3);
                 finish();
                 return true;
             default:

@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/abstract_shapes_background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <TextView
-        android:id="@+id/gameNameView"
+        android:id="@+id/pageNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
@@ -31,7 +32,6 @@
             android:inputType="textWebEmailAddress"
             android:layout_margin="10dp"
             android:padding="10dp"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
